@@ -12,7 +12,24 @@
 %
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+% Data Loading and Preprocessing:
+%
+% The code loads the experimental log data from a CSV file, separating trials based on numerosity and size tasks.
+% It identifies unique numerosity and size values used in the experiment.
+% Numerosity and Size Analysis:
+% For each unique numerosity and size value, the code calculates the probability of participants' responses.
+% It fits a logistic function to model the relationship between numerosity/size and participants' responses, 
+% determining the Point of Subjective Equality (PSE) and Weber fraction.
+% Numerosity Analysis:
+% The code fits a logistic function to the probability data for numerosity trials, estimating 
+% parameters such as the slope, midpoint, and maximum probability.
+% It calculates the PSE and Weber fraction for numerosity perception.
+% Size Analysis:
+% Similarly, the code fits a logistic function to the probability data for size trials, 
+% estimating parameters such as the slope, midpoint, and maximum probability.
+% It calculates the PSE and Weber fraction for size perception.
+% Results Storage:
+% Finally, the code stores the calculated PSE and Weber fraction values for numerosity and size tasks in the results structure.
 
 function results = exp_analyze(file)
 
