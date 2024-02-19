@@ -12,23 +12,48 @@
 %
 % You should have received a copy of the GNU General Public License
 % along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+% The provided code performs an analysis of data files from Experiment 2. 
+% Here's a brief description of its functionality:
+%
+% Loading Data: The code reads the experimental log data from a CSV file.
+% Defining Standard Values: Standard values for numerosity and size are defined, along with variables to store trial data.
+%
+% Extracting Trials: The code identifies trials for numerosity and size tasks from the experimental log data.
+%
+% Calculating Probabilities: It calculates probabilities for each combination of presentation duration, numerosity, and size.
+%
+% Fitting Logistic Functions: Logistic functions are fitted to the probability data for both 
+% numerosity and size tasks, across different presentation durations.
+%
+% Calculating PSE and Weber Fraction: The code calculates the Point of Subjective Equality (PSE) and 
+% Weber fraction for numerosity and size perception at different presentation durations.
+%
+% Storing Results: Finally, the code stores the calculated PSE, Weber fraction, and 
+% presentation durations in the results structure.
 
 function results = exp_analyze(file)
 
-
+% Load experimental log data from the provided CSV file
 expLog = csvread(file,1,0);
 
+% Define standard values for numerosity and size
 num_std = 13;
+size_std = 50;
+
+% Extract trials for numerosity and size tasks
 num_trials = find(expLog(:,2) == 1);
 expLog_num = expLog(num_trials,:);
-size_std = 50;
 size_trials = find(expLog(:,2) == 2);
 expLog_size = expLog(size_trials,:);
+
+% Find unique numerosity and size values
 numeros = unique(expLog(:,3));
 sizes = unique(expLog(:,4));
 
+% Find unique presentation durations
 durations = unique(expLog(:,5));
+
+% Loop over each presentation duration for number trials
 for i = 1:numel(durations)
     for j = 1:numel(numeros)
         a = find(expLog_num(:,5) == durations(i));
@@ -38,6 +63,7 @@ for i = 1:numel(durations)
     end
 end
 
+% Similar loop for size trials
 for i = 1:numel(durations)
     for j = 1:numel(sizes)
         a = find(expLog_size(:,5) == durations(i));
@@ -47,7 +73,7 @@ for i = 1:numel(durations)
     end
 end
 
-
+% Fit logistic functions to the probability data for numerosity
 fun = @(p,t) (p(3)./(1+exp(-p(1)*(t-p(2)))))';
 %fun = @(p,t) (p(3)./(p(1)+exp(-p(2)*t)))';
 num_data = linspace(min(numeros)/num_std,max(numeros)/num_std,101);
@@ -60,7 +86,7 @@ pguess  = [10 0.1 1];
 [p2 fminres] = lsqcurvefit(fun,pguess,num_fit,results.num_prob(2,:));
 [p3 fminres] = lsqcurvefit(fun,pguess,num_fit,results.num_prob(3,:));
 
-
+% Calculate PSE and Weber fraction for numerosity
 num1_data = p1(3)./(1+exp(-p1(1)*(num_data-p1(2))));
 num2_data = p2(3)./(1+exp(-p2(1)*(num_data-p2(2))));
 num3_data = p3(3)./(1+exp(-p3(1)*(num_data-p3(2))));
@@ -105,6 +131,7 @@ weber_num1 = abs(PSE25_num1 - PSE_num1);
 weber_num2 = abs(PSE25_num2 - PSE_num2);
 weber_num3 = abs(PSE25_num3 - PSE_num3);
 
+% Fit logistic functions to the probability data for size
 fun = @(p,t) (p(3)./(1+exp(-p(1)*(t-p(2)))))';
 %fun = @(p,t) (p(3)./(p(1)+exp(-p(2)*t)))';
 size_data = linspace(min(sizes)/size_std,max(sizes)/size_std,101);
@@ -113,6 +140,7 @@ size_fit = sizes/size_std;
 
 pguess  = [1 1 1];
 
+% Calculate PSE and Weber fraction for size
 [p1 fminres] = lsqcurvefit(fun,pguess,size_fit,results.size_prob(1,:));
 [p2 fminres] = lsqcurvefit(fun,pguess,size_fit,results.size_prob(2,:));
 [p3 fminres] = lsqcurvefit(fun,pguess,size_fit,results.size_prob(3,:));
@@ -163,6 +191,7 @@ weber_size1 = abs(PSE25_size1 - PSE_size1);
 weber_size2 = abs(PSE25_size2 - PSE_size2);
 weber_size3 = abs(PSE25_size3 - PSE_size3);
 
+% Store results in the output structure
 results.PSE_num = [PSE_num1 PSE_num2 PSE_num3];
 results.PSE_size = [PSE_size1 PSE_size2 PSE_size3];
 results.weber_num = [weber_num1 weber_num2 weber_num3];
