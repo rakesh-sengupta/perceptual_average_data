@@ -1,21 +1,27 @@
-The experiment begins with an instructional screen instructing participants to initiate by 
-pressing the space key, followed by an adaptation block featuring displays with a 2000ms duration 
-and a variable white flash (950 to 1050ms) to reduce visual persistence. The adaptation display 
-consists of 13 black dots with a 50px average size, varying individually within the virtual grid. 
-Subsequent trial displays present small or large numerosity and mean size values in relation to 
-reference values, with an Inter-Trial Interval (ITI) of 950ms to 1050ms and a white flash to 
-diminish visual persistence. Variability in ITI aims to prevent observer habituation. 
-Participants engage in Numerosity Comparison and Mean Size Estimation tasks across 72 trials, 
-and advance to the next trial only upon making a selection.
+# Experiment 1: free viewing
 
-The CSV files for Experiment 1 follow a specific structure with the following column headings:
+24 participants (students at SR University and the University of Rajasthan, aged 18–27), one CSV file each (`A_results.csv` to `X_results.csv`).
 
-1. **Trial Number**: Sequential numbering of the trials conducted during Experiment 1.
-2. **TrialTypeN1S2**: Indicates the type of trial. 'N1' represents numerosity trials, and 'S2' represents size trials.
-3. **Nvalue**: Numerosity value of the set presented in the trial.
-4. **Svalue**: Size value of the set presented in the trial.
-5. **KeyPressZsmallMgreater**: Participant response indicating whether they perceived the test stimulus as having fewer objects or smaller mean size compared to the reference stimulus. 'Z' indicates fewer objects/smaller size, and 'M' indicates greater objects/larger size.
-6. **ReactionTime**: Time taken by the participant to respond to the trial stimulus.
-7. **Accuracy**: Indicates the accuracy of the participant's response, typically binary (correct/incorrect).
+## Procedure
 
-These headings provide insight into the structure of the data files and the information contained within each column.
+1. Instructions; participants were told not to count. Space bar to start.
+2. **Familiarisation**: the reference array (13 dots, mean diameter 50 px) shown 30 times for 2000 ms each, with dot sizes and positions redrawn each time, separated by a blank white screen of 950–1050 ms. No response.
+3. **Test**: 72 trials, 36 per task, tasks in random order. On each trial an array was shown with the word "Number" or "Size" above it, until the participant responded: **Z** = fewer/smaller than the reference, **M** = more/larger. A blank white screen of 950–1050 ms followed. The blank screen does not mask the display.
+
+Stimuli: black dots on a white background, at randomly chosen points of a fixed 5 × 5 lattice spaced 150 px apart (centres from screen coordinates (660, 240) to (1260, 840)). Individual diameters were random proportions of the array's total diameter, redrawn until every dot was between 10 and 140 px, so the array mean was exact. Numerosities: 4, 7, 10, 15, 18, 21. Mean diameters: 18, 25, 35, 65, 75, 90 px. Every numerosity was paired with every mean diameter; each array was used once in each task.
+
+## Columns
+
+| Column | Meaning |
+| --- | --- |
+| `Trial Number` | Trial index |
+| `TrialTypeN1S2` | 1 = numerosity task, 2 = mean-size task |
+| `Nvalue` | Numerosity of the array |
+| `Svalue` | Mean dot diameter (px) |
+| `KeyPressZsmallMgreater` | Response: 0 = Z (fewer/smaller), 1 = M (more/larger). In `F`, `I` and `R` this column is named `KeyPressZ0lessm1greater`. |
+| `ReactionTime` | Response time (s) |
+| `Accuracy` | 1 = correct, 0 = incorrect |
+
+## Notes
+
+- Excluded from the published analyses (responses on mean-size trials not predicted by mean size): `L`.

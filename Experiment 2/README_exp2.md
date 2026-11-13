@@ -1,17 +1,33 @@
-Experiment 2 began with participants reading instructions and initiating the session by pressing the space key. The adaption block, similar to the first experiment, marked the session's start. Each trial featured a 1000ms fixation cross, followed by a test stimulus presented for durations of 68ms, 500ms, and 1s. Inter-stimulus interval (ISI) and inter-trial interval (ITI) durations ranged from 950ms to 1050ms, maintaining variability to prevent observer habituation. After the test stimulus, a response screen prompted participants to determine if the stimulus had a larger or smaller magnitude than the reference (Reference Numerosity=13; Reference Average Size=50px), depending on the task, and to press the corresponding key.
+# Experiment 2: brief unmasked presentation
 
-### Experiment 2 CSV File Structure
+53 session files from 49 distinct participants (students aged 18–27). See **Notes** for the four duplicate files.
 
-The CSV files for Experiment 2 adhere to a specific structure with the following column headings:
+## Procedure
 
-1. **Trial Number**: Sequential numbering of the trials conducted during Experiment 2.
-2. **TrialTypeN1S2**: Indicates the type of trial. 'N1' represents numerosity trials, and 'S2' represents size trials.
-3. **Nvalue**: Numerosity value of the set presented in the trial.
-4. **Svalue**: Size value of the set presented in the trial.
-5. **Time**: Duration of presentation of the test stimulus in milliseconds.
-6. **KeyPressZsmallMgreater**: Participant response indicating whether they perceived the test stimulus as having fewer objects or smaller mean size compared to the reference stimulus. 'Z' indicates fewer objects/smaller size, and 'M' indicates greater objects/larger size.
-7. **ReactionTime**: Time taken by the participant to respond to the trial stimulus.
-8. **Accuracy**: Indicates the accuracy of the participant's response, typically binary (correct/incorrect).
+1. Instructions; participants were told not to count. Space bar to start.
+2. **Familiarisation**: as in Experiment 1 (30 reference displays of 2000 ms, blank white screen of 950–1050 ms between them).
+3. **Test**: 216 trials, 108 per task, tasks in random order. Each trial: fixation cross (1000 ms) → test array for 68, 500 or 1000 ms → response screen with the word "NUMBER" or "SIZE", shown until the response (**Z** = fewer/smaller, **M** = more/larger) → blank white screen of 950–1050 ms. The task was therefore indicated only after the array had gone. The blank screen does not mask the display.
 
-These headings offer clarity on the content of each column in the Experiment 2 CSV files, facilitating easier interpretation and analysis of the data.
+Durations were timed by waiting between screen refreshes rather than by counting frames, so each was rounded up to the next refresh; at 60 Hz the 68 ms display was probably on screen for 5 frames (about 83 ms).
 
+Stimuli: as in Experiment 1. Within each task and duration (36 trials), each numerosity and each mean diameter appeared six times; the pairing of numerosity with mean diameter varied between participants. Both tasks used the same sequence of arrays.
+
+## Columns
+
+| Column | Meaning |
+| --- | --- |
+| `Trial Number` | Trial index |
+| `TrialTypeN1S2` | 1 = numerosity task, 2 = mean-size task |
+| `Nvalue` | Numerosity of the array |
+| `Svalue` | Mean dot diameter (px) |
+| `time` | Requested presentation duration (s): 0.068, 0.5 or 1 |
+| `KeyPressZsmallMgreater` | Response: 0 = Z (fewer/smaller), 1 = M (more/larger) |
+| `ReactionTime` | Response time (s), from the onset of the response screen |
+| `Accuracy` | 1 = correct, 0 = incorrect |
+| `displaytime` | Present in four files only; not used |
+
+## Notes
+
+- **Duplicate files.** Four files are exact trial-by-trial copies of others (same stimuli, responses and response times) and must not be analysed as separate participants: `AD_results.csv` and `AL_results.csv` duplicate `AAA.csv`; `AX_results.csv` duplicates `AK_results.csv`; `AY_results.csv` duplicates `AAB.csv`. They are kept here unchanged so that the original upload is preserved; the analysis code drops them automatically.
+- **Incomplete session.** `S_results.csv` has 99 of 216 trials and is excluded.
+- **Excluded from the published analyses** (cued dimension did not predict responses in one or both tasks): `AAC`, `AE`, `AG`, `AK`, `AR`, `AV`, `AW`, `I`, `T`.
