@@ -2,7 +2,7 @@
 
 Data for the three experiments in
 
-> Sengupta, R., Shukla, A., Pareek, S., Prusty, A., & Sultana, S. Exploring the interaction of enumeration and perceptual averaging across varied presentation durations. *Attention, Perception, & Psychophysics* (under revision).
+
 
 Observers compared the numerosity or the mean size of dot arrays with a remembered reference (13 dots, mean diameter 50 px).
 
