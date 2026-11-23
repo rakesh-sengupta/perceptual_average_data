@@ -14,6 +14,6 @@ Observers compared the numerosity or the mean size of dot arrays with a remember
 
 Each folder has a README describing the procedure, the CSV columns and the participants excluded from the published analyses. Please read the note on duplicate files in `Experiment 2/README_exp2.md` before analysing Experiment 2.
 
-All analysis and simulation code, including the Experiment 3 program, is at https://github.com/rakesh-sengupta/perceptual_average_code. Its `run_all.sh` takes the path to this repository and reproduces every analysis, table and figure in the article.
+All analysis and simulation code, including the Experiment 3 program, is at another repo. Its `run_all.sh` takes the path to this repository and reproduces every analysis, table and figure in the article.
 
 `exp_analyze.m` in the Experiment 1 and 2 folders is the original MATLAB analysis used for the first submission. The revised article re-analyses all three experiments with the Python code in the code repository.
